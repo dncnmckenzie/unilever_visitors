@@ -208,8 +208,8 @@ def run_schedule():
         time.sleep(1)
 
 
-# Schedule the daily summary email at 5 PM
-schedule.every().day.at("17:00").do(send_daily_summary)
+# Schedule the daily summary email at 4:30 PM
+schedule.every().day.at("16:30").do(send_daily_summary)
 
 # Start the scheduling in a separate thread
 t = Thread(target=run_schedule)
