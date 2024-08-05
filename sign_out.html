@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Out</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#003399">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,10 +78,25 @@
     </div>
 
     <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, error => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Fetching visitor names...');
             fetch('/visitor_names')
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Received response:', response);
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('Visitor names:', data);
                     var select = document.getElementById('fullName');
                     if (data.length === 0) {
                         var option = document.createElement('option');
