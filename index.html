@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visitor Management System</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#003399">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,17 +53,5 @@
             <a href="/sign_out">Sign Out</a>
         </div>
     </div>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, error => {
-                    console.log('ServiceWorker registration failed: ', error);
-                });
-            });
-        }
-    </script>
 </body>
 </html>
