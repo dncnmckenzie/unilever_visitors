@@ -81,13 +81,21 @@
                 .then(response => response.json())
                 .then(data => {
                     var select = document.getElementById('fullName');
-                    data.forEach(function(name) {
+                    if (data.length === 0) {
                         var option = document.createElement('option');
-                        option.value = name;
-                        option.text = name;
+                        option.value = '';
+                        option.text = 'No visitors available';
                         select.add(option);
-                    });
-                });
+                    } else {
+                        data.forEach(function(name) {
+                            var option = document.createElement('option');
+                            option.value = name;
+                            option.text = name;
+                            select.add(option);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching visitor names:', error));
         });
 
         document.getElementById('signOutForm').addEventListener('submit', function(event) {
